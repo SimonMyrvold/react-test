@@ -26,14 +26,10 @@ export default function App() {
     <div className="App">
       <header className="App-header">
 
-        <h1>Bostadrätt / Villa</h1>
-
-        <div className="columns-2 mt-4 text-center">
                 <h2 className="pt-2">Bostadrätt</h2>
                 <input type="checkbox" className="rounded-full" id="block" onChange={() => blockUnblock('block')}/>
                 <h2 className="pt-2">Villa</h2>
                 <input type="checkbox" classame="rounded-full" id="unblock" onChange={() => blockUnblock('unblock')}/>
-        </div>
 
         <div>{settings}</div>
 
