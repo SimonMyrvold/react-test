@@ -8,16 +8,21 @@ import { useState } from "react"
 export default function App() {
   
   const [settings, setSettings] = useState(
-    <h1>Välj Bostadtyp</h1>
+    <>  
+    <br />
+    <h2>Välj Bostadtyp</h2>
+    </>
   );
 
   function blockUnblock(type){
     if(type === 'block'){
-      document.getElementById('unblock').checked = false;
       setSettings(<Bostad />);
+      document.getElementById('bostad').style.color = "red";
+      document.getElementById('villa').style.color = "white";
     }else{
-      document.getElementById('block').checked = false;
       setSettings(<Villa />);
+      document.getElementById('villa').style.color = "red";
+      document.getElementById('bostad').style.color = "white";
     }
 
   }
@@ -26,12 +31,12 @@ export default function App() {
     <div className="App">
       <header className="App-header">
 
-                <h2 className="pt-2">Bostadrätt</h2>
-                <input type="checkbox" className="rounded-full" id="block" onChange={() => blockUnblock('block')}/>
-                <h2 className="pt-2">Villa</h2>
-                <input type="checkbox" classame="rounded-full" id="unblock" onChange={() => blockUnblock('unblock')}/>
+                <h2 id='bostad' className="pt-2" style={{ color: 'white' }} onClick={() => blockUnblock('block')}>Bostadrätt</h2>
+                <h2 id='villa' className="pt-2" style={{ color: 'white' }} onClick={() => blockUnblock('unblock')}>Villa</h2>
 
         <div>{settings}</div>
+
+
 
 
       </header>

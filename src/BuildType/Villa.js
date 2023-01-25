@@ -41,14 +41,17 @@ export default function Villa() {
             let sopor = state.sopor;
             let varme = state.varme;
 
+            console.log(1 + ranta/100);
+
             let totaltpermonth = (inkopspris - kontantinsats)/(ar*12);
-            let totalt = parseInt((parseInt(totaltpermonth * (1 + ranta/100))) + parseInt(vatten) + parseInt(el) + parseInt(sopor) + parseInt(varme));
+            let totalt = parseInt((parseInt(totaltpermonth * (1+ ranta/100))));
+            let extracost = totalt + + parseInt(vatten) + parseInt(el) + parseInt(sopor) + parseInt(varme);
             if (kontantinsats / inkopspris < 0.15) {
                 document.getElementById('totalt').style.color = "red";
                 let warningMessage = "Kontantinsats är mindre än 15% av inköpspriset " + (Math.floor(totalt)).toString();
                 setTotalt(warningMessage.toString());
             } else {
-                setTotalt(Math.floor(totalt));
+                setTotalt(Math.floor(extracost));
                 document.getElementById('totalt').style.color = "white";
             }
         }
@@ -57,7 +60,7 @@ export default function Villa() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Bostadsrätt</h1>
+        <h1>Villa</h1>
 
             <div className="mt-4">
                 <h4 className="text-center">År: {state.ar}</h4>
