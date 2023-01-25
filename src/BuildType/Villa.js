@@ -45,7 +45,7 @@ export default function Villa() {
 
             let totaltpermonth = (inkopspris - kontantinsats)/(ar*12);
             let totalt = parseInt((parseInt(totaltpermonth * (1+ ranta/100))));
-            let extracost = totalt + + parseInt(vatten) + parseInt(el) + parseInt(sopor) + parseInt(varme);
+            let extracost = totalt + parseInt(vatten) + parseInt(el) + parseInt(sopor) + parseInt(varme);
             if (kontantinsats / inkopspris < 0.15) {
                 document.getElementById('totalt').style.color = "red";
                 let warningMessage = "Kontantinsats är mindre än 15% av inköpspriset " + (Math.floor(totalt)).toString();

@@ -37,12 +37,13 @@ export default function Bostad() {
 
             let totaltpermonth = (inkopspris - kontantinsats)/(ar*12);
             let totalt = parseInt((parseInt(totaltpermonth * (1 + ranta/100))) + parseInt(avgift) + parseInt(ovrigt));
+            let extracost = parseInt(avgift) + parseInt(ovrigt);
             if (kontantinsats / inkopspris < 0.15) {
                 document.getElementById('totalt').style.color = "red";
                 let warningMessage = "Kontantinsats är mindre än 15% av inköpspriset " + (Math.floor(totalt)).toString();
                 setTotalt(warningMessage.toString());
             } else {
-                setTotalt(Math.floor(totalt));
+                setTotalt(Math.floor(extracost));
                 document.getElementById('totalt').style.color = "white";
             }
         }
