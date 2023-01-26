@@ -40,18 +40,20 @@ export default function Villa() {
             let el = state.el;
             let sopor = state.sopor;
             let varme = state.varme;
+            let amortering;
 
-            console.log(1 + ranta/100);
+            let totaltpermonth = parseInt(inkopspris - kontantinsats);
+            ranta = totaltpermonth*((parseInt(state.ranta)/100)/12);
+            amortering = parseInt(totaltpermonth/((ar*12)));
+            let totaltpermonth2 = parseInt(amortering + ranta);
+            let kostnad = parseInt(vatten) + parseInt(el) + parseInt(sopor) + parseInt(varme);
 
-            let totaltpermonth = (inkopspris - kontantinsats)/(ar*12);
-            let totalt = parseInt((parseInt(totaltpermonth * (1+ ranta/100))));
-            let extracost = totalt + parseInt(vatten) + parseInt(el) + parseInt(sopor) + parseInt(varme);
             if (kontantinsats / inkopspris < 0.15) {
                 document.getElementById('totalt').style.color = "red";
-                let warningMessage = "Kontantinsats är mindre än 15% av inköpspriset " + (Math.floor(totalt)).toString();
+                let warningMessage = "Kontantinsats är mindre än 15% av inköpspriset " + (Math.floor(totaltpermonth2)).toString();
                 setTotalt(warningMessage.toString());
             } else {
-                setTotalt(Math.floor(extracost));
+                setTotalt(Math.floor(totaltpermonth2 + kostnad));
                 document.getElementById('totalt').style.color = "white";
             }
         }

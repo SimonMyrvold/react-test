@@ -34,16 +34,21 @@ export default function Bostad() {
             let ranta = state.ranta;
             let avgift = state.avgift;
             let ovrigt = state.ovrigt;
+            let amortering;
 
-            let totaltpermonth = (inkopspris - kontantinsats)/(ar*12);
-            let totalt = parseInt((parseInt(totaltpermonth * (1 + ranta/100))) + parseInt(avgift) + parseInt(ovrigt));
-            let extracost = parseInt(avgift) + parseInt(ovrigt);
+            let totaltpermonth = parseInt(inkopspris - kontantinsats);
+            ranta = totaltpermonth*((parseInt(state.ranta)/100)/12);
+            amortering = parseInt(totaltpermonth/((ar*12)));
+            let totaltpermonth2 = parseInt(amortering + ranta);
+            let kostnad = parseInt(avgift) + parseInt(ovrigt);
+            
+
             if (kontantinsats / inkopspris < 0.15) {
                 document.getElementById('totalt').style.color = "red";
-                let warningMessage = "Kontantinsats är mindre än 15% av inköpspriset " + (Math.floor(totalt)).toString();
+                let warningMessage = "Kontantinsats är mindre än 15% av inköpspriset " + (Math.floor(totaltpermonth2)).toString();
                 setTotalt(warningMessage.toString());
             } else {
-                setTotalt(Math.floor(extracost));
+                setTotalt(Math.floor(totaltpermonth2 + kostnad).toString());
                 document.getElementById('totalt').style.color = "white";
             }
         }
